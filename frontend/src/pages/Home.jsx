@@ -1,8 +1,9 @@
 import React from "react";
 import Tasks from "./Tasks";
 import Timer from "../components/Timer";
+import "./Home.css"
 
-import "./Home.css";
+
 
 export default function Home() {
   return (

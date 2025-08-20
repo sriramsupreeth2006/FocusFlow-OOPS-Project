@@ -1,46 +1,58 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import "./Tasks.css"; // reuse same CSS
 
 export default function TaskList() {
   const [tasks, setTasks] = useState([]);
-  const [input, setInput] = useState("");
+  const [newTask, setNewTask] = useState("");
 
   const addTask = () => {
-    if (!input.trim()) return;
-    setTasks([...tasks, { text: input, done: false }]);
-    setInput("");
+    if (newTask.trim() === "") return;
+    setTasks([...tasks, { id: Date.now(), text: newTask, completed: false }]);
+    setNewTask("");
   };
 
-  const toggleTask = (index) => {
-    const newTasks = [...tasks];
-    newTasks[index].done = !newTasks[index].done;
-    setTasks(newTasks);
+  const toggleTask = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
   };
 
   return (
-    <div className="p-4 bg-white shadow rounded-lg">
-      <h2 className="text-lg font-bold mb-2">Tasks</h2>
-      <div className="flex gap-2">
+    <div className="tasks-container">
+      <h2>To-Do Manager</h2>
+
+      <div className="task-input">
         <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="border p-2 flex-1 rounded"
-          placeholder="Add a new task..."
+          type="text"
+          placeholder="Enter a new task..."
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && addTask()}
         />
-        <button onClick={addTask} className="bg-blue-600 text-white px-4 py-2 rounded">
-          Add
-        </button>
+        <button onClick={addTask}>Add</button>
       </div>
-      <ul className="mt-3">
-        {tasks.map((task, i) => (
-          <li
-            key={i}
-            onClick={() => toggleTask(i)}
-            className={`cursor-pointer p-2 rounded ${task.done ? "line-through text-gray-400" : ""}`}
-          >
-            {task.text}
-          </li>
-        ))}
-      </ul>
+
+      <div className="task-list">
+        {tasks.length === 0 ? (
+          <p className="empty-msg">No tasks yet. Add one above!</p>
+        ) : (
+          tasks.map((task) => (
+            <div
+              key={task.id}
+              className={`task-box ${task.completed ? "completed" : ""}`}
+            >
+              <span onClick={() => toggleTask(task.id)}>{task.text}</span>
+              <button onClick={() => deleteTask(task.id)}>delete</button>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }
