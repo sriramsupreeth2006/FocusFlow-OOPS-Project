@@ -1,64 +1,48 @@
-.home-container {
+.home {
   display: flex;
-  gap: 20px;
-  padding: 20px;
+  gap: 30px;
+  padding: 30px;
+  margin-left: 220px; /* space for sidebar navbar */
 }
 
-.home-box {
+.card {
   flex: 1;
-  background-color: rgb(207, 182, 186);
-  border-radius: 10px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
   padding: 20px;
-  color: rgb(36, 45, 62);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 
-.timer {
-  font-size: 3rem;
-  margin: 20px 0;
+/* Timer card larger for focus */
+.timer-card {
+  flex: 0.6;
 }
 
-.preset-buttons button,
-.timer-controls button,
-.custom-timer button {
-  margin: 5px;
-  padding: 10px 15px;
-  background: rgb(36, 45, 62);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+/* Tasks card */
+.tasks-card {
+  flex: 1;
+  text-align: left;
 }
 
-.preset-buttons button:hover,
-.timer-controls button:hover,
-.custom-timer button:hover {
-  opacity: 0.85;
-}
-
-.custom-timer {
-  margin: 10px 0;
-}
-
-.custom-timer input {
-  padding: 6px;
-  width: 80px;
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #242d3e;
   text-align: center;
-  border: 2px solid rgb(36, 45, 62);
-  border-radius: 6px;
-  margin-right: 5px;
 }
 
 .motivation {
-  margin-top: 15px;
+  margin-top: 16px;
   font-style: italic;
+  color: #444;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .home-container {
+@media (max-width: 900px) {
+  .home {
     flex-direction: column;
+    margin-left: 0;
   }
 }
 

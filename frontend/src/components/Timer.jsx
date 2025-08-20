@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import "./Timer.css";
 
-export default function Timer() {
-  const [seconds, setSeconds] = useState(25 * 60);
+export default function Timer({ defaultMinutes = 25 }) {
+  const [seconds, setSeconds] = useState(defaultMinutes * 60);
   const [running, setRunning] = useState(false);
+  const [customMinutes, setCustomMinutes] = useState(defaultMinutes);
 
   useEffect(() => {
     let timer;
@@ -15,20 +17,45 @@ export default function Timer() {
   const formatTime = (s) => {
     const m = Math.floor(s / 60);
     const sec = s % 60;
-    return `${m}:${sec < 10 ? "0" : ""}${sec}`;
+    return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+  };
+
+  const handleSetTimer = (mins) => {
+    setRunning(false);
+    setCustomMinutes(mins);
+    setSeconds(mins * 60);
   };
 
   return (
-    <div className="p-4 bg-white shadow rounded-lg text-center">
-      <h2 className="text-lg font-bold mb-2">Focus Timer</h2>
-      <div className="text-3xl font-mono">{formatTime(seconds)}</div>
-      <div className="mt-3 space-x-2">
-        <button onClick={() => setRunning(!running)} className="bg-green-600 text-white px-4 py-2 rounded">
+    <div className="timer-container">
+      <h2 className="timer-title">Focus Timer</h2>
+
+      {/* Timer Box */}
+      <div className="timer-box">{formatTime(seconds)}</div>
+
+      {/* Preset Buttons */}
+      <div className="preset-buttons">
+        <button onClick={() => handleSetTimer(25)}>25 min</button>
+        <button onClick={() => handleSetTimer(50)}>50 min</button>
+      </div>
+
+      {/* Custom Input */}
+      <div className="custom-timer">
+        <input
+          type="number"
+          min="1"
+          value={customMinutes}
+          onChange={(e) => setCustomMinutes(Number(e.target.value))}
+        />
+        <button onClick={() => handleSetTimer(customMinutes)}>Set</button>
+      </div>
+
+      {/* Controls */}
+      <div className="timer-controls">
+        <button onClick={() => setRunning(!running)}>
           {running ? "Pause" : "Start"}
         </button>
-        <button onClick={() => { setRunning(false); setSeconds(25 * 60); }} className="bg-red-600 text-white px-4 py-2 rounded">
-          Reset
-        </button>
+        <button onClick={() => handleSetTimer(defaultMinutes)}>Reset</button>
       </div>
     </div>
   );
