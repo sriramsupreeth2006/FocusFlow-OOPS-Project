@@ -5,20 +5,28 @@ import Home from "./pages/Home";
 import Tasks from "./pages/Tasks";
 import Stats from "./pages/Stats";
 import Profile from "./pages/Profile";
+import AdminDashboard from "./AdminDashboard";
 import "./App.css";
+
+// TODO: Create these components or remove the links from Navbar.jsx
+const Goals = () => <h1>Goals Page</h1>;
+const Blocker = () => <h1>Blocker Page</h1>;
 
 export default function App() {
   return (
     <Router>
       <Navbar />
-      <div style={{ padding: "1rem" }}>
+      <main className="app-container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/stats" element={<Stats />} />
+          <Route path="/goals" element={<Goals />} />
+          <Route path="/blocker" element={<Blocker />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
-      </div>
+      </main>
     </Router>
   );
 }
