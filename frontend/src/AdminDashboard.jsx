@@ -47,7 +47,7 @@ export default function AdminDashboard() {
       <ul className="mt-4">
         {rules.map((r) => (
           <li key={r.id} className="border p-2 my-1 rounded">
-            {r.action} {r.targetType} → {r.pattern}
+            {r.type} {r.targetType} → {r.pattern}
           </li>
         ))}
       </ul>

@@ -5,12 +5,12 @@ import Home from "./pages/Home";
 import Tasks from "./pages/Tasks";
 import Stats from "./pages/Stats";
 import Profile from "./pages/Profile";
+import Blocker from "./pages/Blocker";
 import AdminDashboard from "./AdminDashboard";
 import "./App.css";
 
 // TODO: Create these components or remove the links from Navbar.jsx
 const Goals = () => <h1>Goals Page</h1>;
-const Blocker = () => <h1>Blocker Page</h1>;
 
 export default function App() {
   return (

@@ -1,9 +1,8 @@
-// Base URL of your backend
-export const API = "http://localhost:8080";
+// Base URL of your backend (configurable via Vite env)
+export const API = import.meta.env.VITE_API_URL || "http://localhost:8081";
 
-// Replace this with the actual admin token your backend expects
-// (example: "supersecret123" or JWT depending on backend setup)
-export const ADMIN_TOKEN = "supersecret123";  
+// Admin token expected by backend (x-admin-token)
+export const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN || "FOCUSFLOW_ADMIN_TOKEN";
 
 // Common API wrapper
 export async function api(path, opts = {}) {

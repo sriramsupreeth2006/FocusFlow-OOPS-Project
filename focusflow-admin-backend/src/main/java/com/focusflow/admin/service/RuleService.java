@@ -1,9 +1,13 @@
 package com.focusflow.admin.service;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
@@ -30,6 +34,16 @@ public class RuleService {
 
     public void delete(Long id) { repo.deleteById(id); }
 
+    @Transactional
+    public long deleteAllAppRules() {
+        return repo.deleteByTargetType(Rule.TargetType.APP);
+    }
+
+    @Transactional
+    public long deleteAppRulesByType(Rule.RuleType type) {
+        return repo.deleteByTargetTypeAndType(Rule.TargetType.APP, type);
+    }
+
     public int pushToAll() {
         List<Rule> rules = repo.findAll();
         String payload = "{\"type\":\"rules\",\"rules\":" + JsonUtil.toJson(rules) + "}";
@@ -53,5 +67,21 @@ public class RuleService {
             session.sendMessage(new TextMessage(payload));
             return 1;
         } catch (Exception e) { return 0; }
+    }
+
+    public void exportAppBlacklistToFile() {
+        List<Rule> rules = repo.findAll();
+        Path file = Path.of("..", "..", "block_apps", "blocklist.txt"); // relative to backend folder
+        StringBuilder sb = new StringBuilder();
+        for (Rule r : rules) {
+            if (r.getTargetType() == Rule.TargetType.APP && r.getType() == Rule.RuleType.BLACKLIST && r.isEnabled()) {
+                sb.append(r.getPattern()).append(System.lineSeparator());
+            }
+        }
+        try {
+            Files.writeString(file, sb.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
