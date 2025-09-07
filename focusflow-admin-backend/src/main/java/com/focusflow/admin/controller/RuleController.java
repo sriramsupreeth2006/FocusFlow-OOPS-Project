@@ -38,9 +38,10 @@ public class RuleController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public Map<String,Object> delete(@PathVariable Long id){
         service.delete(id);
         service.exportAppBlacklistToFile();
+        return Map.of("ok", true, "id", id);
     }
 
     @PostMapping("/push")

@@ -10,15 +10,14 @@ export async function api(path, opts = {}) {
     ...opts,
     headers: {
       "Content-Type": "application/json",
-      "x-admin-token": ADMIN_TOKEN,  // custom admin header
+      "x-admin-token": ADMIN_TOKEN,
       ...(opts.headers || {}),
     },
   });
 
+  const text = await res.text();                 // read as text first
   if (!res.ok) {
-    const errorMessage = await res.text();
-    throw new Error(errorMessage);
+    throw new Error(text || res.statusText);
   }
-
-  return res.json();
+  return text ? JSON.parse(text) : null;         // safely handle 204/empty
 }
