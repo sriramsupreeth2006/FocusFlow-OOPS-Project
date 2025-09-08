@@ -1,0 +1,48 @@
+.home {
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+  margin-left: 220px; /* space for sidebar navbar */
+}
+
+.card {
+  flex: 1;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* Timer card larger for focus */
+.timer-card {
+  flex: 0.6;
+}
+
+/* Tasks card */
+.tasks-card {
+  flex: 1;
+  text-align: left;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #242d3e;
+  text-align: center;
+}
+
+.motivation {
+  margin-top: 16px;
+  font-style: italic;
+  color: #444;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .home {
+    flex-direction: column;
+    margin-left: 0;
+  }
+}
+
