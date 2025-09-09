@@ -1,2 +1,1 @@
-chrome.exe
-whatsapp.exe
+telegram.exe
