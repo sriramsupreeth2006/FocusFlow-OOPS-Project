@@ -1,0 +1,110 @@
+.tasks-container {
+  width: 90%;              
+  max-width: 1200px;     
+  margin: 40px auto;
+  padding: 40px;           
+  border-radius: 16px;
+  background: rgb(36, 45, 62); 
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+
+.tasks-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: rgb(208, 182, 186); /* pink heading */
+}
+
+.task-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.task-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid rgb(208, 182, 186);
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  background: white;
+  color: rgb(36, 45, 62);
+}
+
+.task-input input:focus {
+  border-color: rgb(36, 45, 62);
+  box-shadow: 0 0 4px rgb(208, 182, 186);
+}
+
+.task-input button {
+  padding: 10px 18px;
+  background: rgb(208, 182, 186);
+  border: none;
+  border-radius: 8px;
+  color: rgb(36, 45, 62);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.task-input button:hover {
+  background: rgb(190, 160, 165); /* darker pink */
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid rgb(208, 182, 186);
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: all 0.2s ease-in-out;
+  color: rgb(36, 45, 62);
+}
+
+.task-box:hover {
+  background: rgb(245, 240, 241);
+}
+
+.task-box span {
+  flex: 1;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.task-box.completed span {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.task-box button {
+  background: rgb(208, 182, 186);
+  border: none;
+  border-radius: 6px;
+  color: rgb(36, 45, 62);
+  font-size: 14px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.task-box button:hover {
+  background: rgb(190, 160, 165);
+}
+
+.empty-msg {
+  text-align: center;
+  color: rgb(208, 182, 186);
+  font-style: italic;
+}
+

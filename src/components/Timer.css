@@ -1,0 +1,58 @@
+.timer-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  max-width: 400px;
+  margin: auto;
+}
+
+.timer-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: rgb(0,0,0);
+}
+
+.timer-box {
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: monospace;
+  background: rgb(208,182,186);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  border: 2px solid rgb(208,182,186);
+}
+
+.preset-buttons button,
+.custom-timer button,
+.timer-controls button {
+  margin: 5px;
+  padding: 10px 15px;
+  background: rgb(207, 182, 186);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.preset-buttons button:hover,
+.custom-timer button:hover,
+.timer-controls button:hover {
+  background: rgb(207,182,186)
+}
+
+.custom-timer {
+  margin: 10px 0;
+}
+
+.custom-timer input {
+  padding: 6px;
+  width: 80px;
+  text-align: center;
+  border: 2px solid #242d3e;
+  border-radius: 6px;
+  margin-right: 5px;
+}
